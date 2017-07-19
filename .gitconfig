@@ -1,0 +1,31 @@
+[user]
+	name = GradyCongdon
+	email = gradycongdon@gmail.com
+[core]
+  autocrlf = input
+[push]
+	default = matching
+[alias]
+	co = commit
+	aa = add -A .
+	st = status
+	com = commit -m
+	last = diff HEAD~1 HEAD
+	now = diff --staged
+	staged = diff --staged
+	coam = commit -am
+	logp = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+	unstage = reset HEAD --
+[color]
+  ui = auto
+  diff = true
+  status = true
+  branch = true
+  interactive = true
+  pager = true
+[merge]
+	tool = vimdiff
+[help]
+  autocorrect = 3
+[credential]
+	helper = cache

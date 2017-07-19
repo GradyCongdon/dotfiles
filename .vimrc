@@ -1,3 +1,4 @@
+filetype plugin on
 syntax on
 set t_ut=
 set relativenumber
@@ -22,9 +23,6 @@ set mat=2
 set background=dark
 set laststatus=2
 set cursorline
-set foldmethod=syntax
-set foldlevelstart=1
-set foldenable
 set pastetoggle=<F2>
 set undofile                
 set undodir=$HOME/.vim/undo 
@@ -35,12 +33,22 @@ set statusline+=%*
 
 colorscheme monokai
 highlight Search ctermbg=white ctermfg=black cterm=underline
+hi CursorLine   cterm=NONE ctermbg=235
+
+
+if $FileType!='gitcommit'
+  set foldmethod=syntax
+  set foldlevelstart=1
+  set foldenable
+endif
 
 autocmd BufWinLeave *.* mkview
 autocmd BufWinEnter *.* silent loadview 
 
 let @j = '^/@iV/\8€kb*\/<nhx/\/*€kb\*\*'
 let @u = '^f{va}dF:xxj'
+"space out {{abc}} to {{ abc }}
+let @s = ':%s/{\([%{]\)\([^ ]\)/{\1 \2/g:%s/\([^ ]\)\([%}]\)}/\1 \2}/g'
 
 let mapleader = "\<Space>"
 
@@ -78,8 +86,11 @@ imap j" <Esc>lcsw"i
 :iabbrev Schmea Schema
 :iabbrev sectoin section
 :iabbrev Sectoin Section
+:iabbrev resposne response
+:iabbrev evalute evaluate
 
-au BufReadPost *.less set syntax=css
+au BufReadPost *.sass set syntax=sass
+au BufReadPost *.es6 set syntax=javascript
 let javaScript_fold=0
 
 let g:syntastic_javascript_checkers = ['eslint']
@@ -102,6 +113,24 @@ let g:rustfmt_autosave = 1
 set runtimepath^=~/.vim/bundle/ctrlp.vim
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
 
+let g:EasyMotion_do_mapping = 0 " Disable default mappings
+let g:EasyMotion_smartcase = 1
+"nmap <Leader>s <Plug>(easymotion-overwin-f)
+nmap <Leader>s <Plug>(easymotion-overwin-f2)
+map <Leader>l <Plug>(easymotion-lineforward)
+map <Leader>j <Plug>(easymotion-j)
+map <Leader>k <Plug>(easymotion-k)
+map <Leader>h <Plug>(easymotion-linebackward)
+
+" no quote hiding: vim-json https://github.com/elzr/vim-json
+let g:vim_json_syntax_conceal = 0
+
+" flow syntastic + eslint
+let g:syntastic_javascript_checkers = ['eslint', 'flow']
+let g:syntastic_javascript_flow_exe = 'flow'
+
+let g:syntastic_ignore_files = ['node_modules']
+
+
 execute pathogen#infect()
 filetype plugin indent on
-
