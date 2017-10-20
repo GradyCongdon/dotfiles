@@ -30,27 +30,20 @@ set undoreload=10000
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
+set splitbelow
+set splitright
+
+let mapleader = "\<Space>"
 
 colorscheme monokai
 highlight Search ctermbg=white ctermfg=black cterm=underline
 hi CursorLine   cterm=NONE ctermbg=235
-
-
-if $FileType!='gitcommit'
-  set foldmethod=syntax
-  set foldlevelstart=1
-  set foldenable
-endif
-
-autocmd BufWinLeave *.* mkview
-autocmd BufWinEnter *.* silent loadview 
 
 let @j = '^/@iV/\8€kb*\/<nhx/\/*€kb\*\*'
 let @u = '^f{va}dF:xxj'
 "space out {{abc}} to {{ abc }}
 let @s = ':%s/{\([%{]\)\([^ ]\)/{\1 \2/g:%s/\([^ ]\)\([%}]\)}/\1 \2}/g'
 
-let mapleader = "\<Space>"
 
 :command WQ wq
 :command Wq wq
@@ -60,10 +53,13 @@ let mapleader = "\<Space>"
 :command Q q
 :command Qa qa
 :command QA qa
+:command Tabe tabe
 
 nmap ; :
+nnoremap <F2> ::lcd %:p:h<Enter>:tabe explorer<Enter>:Explo<Enter>
 nnoremap <F3> ::lcd %:p:h<Enter>:tabe explorer<Enter>:Explo<Enter>
 nnoremap <F4> :set relativenumber!<Enter>
+nnoremap <F5> ::lcd ~/www/automagick/src/app<Enter>:tabe explorer<Enter>:Explo<Enter>
 nnoremap <F8> <C-x>
 nnoremap <F9> <C-a>
 nnoremap <F12> :set spell!<Enter>
@@ -73,6 +69,11 @@ nnoremap <Leader>r :w<Enter>:! cargo run<Enter>
 nnoremap <Leader>n :lnext<Enter>
 nnoremap c mic
 nnoremap i mii
+" Split pane movement "
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
 
 inoremap jk <Esc>
 inoremap jh <Esc>`i
@@ -88,6 +89,40 @@ imap j" <Esc>lcsw"i
 :iabbrev Sectoin Section
 :iabbrev resposne response
 :iabbrev evalute evaluate
+:iabbrev jounral journal
+:iabbrev calss class
+
+" https://coderwall.com/p/if9mda/automatically-set-paste-mode-in-vim-when-pasting-in-insert-mode
+function! WrapForTmux(s)
+  if !exists('$TMUX')
+    return a:s
+  endif
+
+  let tmux_start = "\<Esc>Ptmux;"
+  let tmux_end = "\<Esc>\\"
+
+  return tmux_start . substitute(a:s, "\<Esc>", "\<Esc>\<Esc>", 'g') . tmux_end
+endfunction
+
+let &t_SI .= WrapForTmux("\<Esc>[?2004h")
+let &t_EI .= WrapForTmux("\<Esc>[?2004l")
+
+function! XTermPasteBegin()
+  set pastetoggle=<Esc>[201~
+  set paste
+  return ""
+endfunction
+
+inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
+
+if $FileType!='gitcommit'
+  set foldmethod=syntax
+  set foldlevelstart=1
+  set foldenable
+endif
+
+autocmd BufWinLeave *.* mkview
+autocmd BufWinEnter *.* silent loadview 
 
 au BufReadPost *.sass set syntax=sass
 au BufReadPost *.es6 set syntax=javascript
@@ -124,13 +159,12 @@ map <Leader>h <Plug>(easymotion-linebackward)
 
 " no quote hiding: vim-json https://github.com/elzr/vim-json
 let g:vim_json_syntax_conceal = 0
-
 " flow syntastic + eslint
 let g:syntastic_javascript_checkers = ['eslint', 'flow']
 let g:syntastic_javascript_flow_exe = 'flow'
+let g:syntastic_ignore_files = ['node_modules', '**/node_modules/*']
 
-let g:syntastic_ignore_files = ['node_modules']
-
+let g:syntastic_typescript_tsc_args = "--target ES2015 --experimentalDecorators --moduleResolution 'Node'"
 
 execute pathogen#infect()
 filetype plugin indent on

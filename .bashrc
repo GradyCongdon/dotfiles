@@ -37,7 +37,7 @@ alias node5="/usr/local/n/versions/node/5.4.1/bin/node"
 alias nge="sudo vim /etc/nginx/conf.d/sites.conf"
 alias ngrl="sudo service nginx reload"
 alias ngr="sudo service nginx restart"
-alias ngs="systemctl status nginx.service"
+alias ng=s"systemctl status nginx.service"
 alias ta="tmux attach -t"
 alias tree='tree -I "node_modules"'
 alias python='python3'
@@ -53,3 +53,4 @@ export PATH="/home/cent/perl5/bin:$PATH";
 export GOOGLE_APPLICATION_CREDENTIALS="/usr/share/nginx/www/biblio/ocr/api-key.json";
 
 export PATH="$HOME/.yarn/bin:$PATH"
+export PS1="\u@\h \w> "
