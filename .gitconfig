@@ -1,21 +1,41 @@
 [user]
-	name = GradyCongdon
+	name = Grady Congdon
 	email = gradycongdon@gmail.com
 [core]
-  autocrlf = input
+	autocrlf = input
+	editor = /usr/bin/vim
+	eol = lf
 [push]
 	default = matching
 [alias]
-	co = commit
+	a = add
 	aa = add -A .
-	st = status
+
+	k = checkout
+  jk = checkout -
+  km = checkout master
+  b = checkout -b
+	zz = checkout --
+
+  co = commit
 	com = commit -m
+  recom = commit --amend -C HEAD
+
 	last = diff HEAD~1 HEAD
-	now = diff --staged
+	l = diff HEAD~1 HEAD
 	staged = diff --staged
-	coam = commit -am
+	d = diff
+	g = diff --staged
+  conflicts = diff --name-only --diff-filter=U
+  cons = diff --name-only --diff-filter=U
+
 	logp = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
-	unstage = reset HEAD --
+  graph = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset) %C(bold cyan)(committed: %cD)%C(reset) %C(auto)%d%C(reset)%n''          %C(white)%s%C(reset)%n''          %C(dim white)- %an <%ae> %C(reset) %C(dim white)(committer: %cn <%ce>)%C(reset)' --all
+
+  poh = push origin HEAD
+
+	s = status
+
 [color]
   ui = auto
   diff = true
@@ -29,3 +49,10 @@
   autocorrect = 3
 [credential]
 	helper = cache
+[diff]
+	tool = vimdiff
+[filter "lfs"]
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f

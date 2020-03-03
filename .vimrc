@@ -1,9 +1,15 @@
 filetype plugin on
 syntax on
+
+"Extend color scheme to whole terminal
 set t_ut=
+"line numbers as relative from current cursor position
 set relativenumber
+"two spaces per tab 
 set shiftwidth=2
+"two spaces per softtab 
 set softtabstop=2
+"tabs -> spaces
 set expandtab
 set tabstop=2
 set autoindent
@@ -11,6 +17,7 @@ set smartindent
 set smarttab
 set nowrap
 set linebreak
+"idk
 set wildmenu
 set cmdheight=2
 set backspace=eol,start,indent
@@ -27,11 +34,10 @@ set pastetoggle=<F2>
 set undofile                
 set undodir=$HOME/.vim/undo 
 set undoreload=10000
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+
 set splitbelow
 set splitright
+set tags=tags;/
 
 let mapleader = "\<Space>"
 
@@ -57,18 +63,18 @@ let @s = ':%s/{\([%{]\)\([^ ]\)/{\1 \2/g:%s/\([^ ]\)\([%}]\)}/\1 \2}/g'
 
 nmap ; :
 nnoremap <F2> ::lcd %:p:h<Enter>:tabe explorer<Enter>:Explo<Enter>
-nnoremap <F3> ::lcd %:p:h<Enter>:tabe explorer<Enter>:Explo<Enter>
+nnoremap <F3> :set number!<Enter>
 nnoremap <F4> :set relativenumber!<Enter>
-nnoremap <F5> ::lcd ~/www/automagick/src/app<Enter>:tabe explorer<Enter>:Explo<Enter>
-nnoremap <F8> <C-x>
-nnoremap <F9> <C-a>
 nnoremap <F12> :set spell!<Enter>
+
 nnoremap <Leader>o o<Esc>
 nnoremap <Leader>O O<Esc>
-nnoremap <Leader>r :w<Enter>:! cargo run<Enter>
+
+nnoremap <Leader>r :w<Enter>:! node %<Enter>
 nnoremap <Leader>n :lnext<Enter>
 nnoremap c mic
 nnoremap i mii
+
 " Split pane movement "
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
@@ -78,6 +84,9 @@ nnoremap <C-H> <C-W><C-H>
 inoremap jk <Esc>
 inoremap jh <Esc>`i
 inoremap ji <Esc>:w<Enter>
+"inoremap jc <Esc>I/*<Esc>A*/<Esc>^f*a
+"nnoremap <Leader>c I/*<Esc>A*/<Esc>^f*a
+
 " surround  shortcuts wrap word in ' "
 imap j' <Esc>lcsw'i
 imap j" <Esc>lcsw"i
@@ -91,6 +100,10 @@ imap j" <Esc>lcsw"i
 :iabbrev evalute evaluate
 :iabbrev jounral journal
 :iabbrev calss class
+:iabbrev artilce article
+:iabbrev Artilce Article
+:iabbrev commnet comment
+:iabbrev Commnet Comment
 
 " https://coderwall.com/p/if9mda/automatically-set-paste-mode-in-vim-when-pasting-in-insert-mode
 function! WrapForTmux(s)
@@ -126,24 +139,15 @@ autocmd BufWinEnter *.* silent loadview
 
 au BufReadPost *.sass set syntax=sass
 au BufReadPost *.es6 set syntax=javascript
-let javaScript_fold=0
 
-let g:syntastic_javascript_checkers = ['eslint']
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
-
-let syntastic_go_checkers = ['golint', 'govet', 'errcheck']
-let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
-let g:go_highlight_functions = 1
-let g:go_highlight_methods = 1
-let g:go_highlight_fields = 1
-let g:go_highlight_types = 1
-let g:go_highlight_operators = 1
-let g:go_highlight_build_constraints = 1
-
-let g:rustfmt_autosave = 1
 
 set runtimepath^=~/.vim/bundle/ctrlp.vim
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
@@ -157,14 +161,17 @@ map <Leader>j <Plug>(easymotion-j)
 map <Leader>k <Plug>(easymotion-k)
 map <Leader>h <Plug>(easymotion-linebackward)
 
+let javaScript_fold=0
 " no quote hiding: vim-json https://github.com/elzr/vim-json
 let g:vim_json_syntax_conceal = 0
 " flow syntastic + eslint
-let g:syntastic_javascript_checkers = ['eslint', 'flow']
-let g:syntastic_javascript_flow_exe = 'flow'
-let g:syntastic_ignore_files = ['node_modules', '**/node_modules/*']
+let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_javascript_eslint_exe = 'npx eslint'
+let g:syntastic_ignore_files = ['node_modules']
 
-let g:syntastic_typescript_tsc_args = "--target ES2015 --experimentalDecorators --moduleResolution 'Node'"
+let g:NERDSpaceDelims = 1
+let g:NERDCommentEmptyLines = 1
+let g:NERDTrimTrailingWhitespace = 1
 
 execute pathogen#infect()
 filetype plugin indent on
