@@ -4,7 +4,6 @@
   "eslint.alwaysShowStatus": true,
   "eslint.format.enable": true,
   "files.autoSave": "onFocusChange",
-  "window.zoomLevel": 0,
   "editor.renderWhitespace": "boundary",
   "editor.tabSize": 2,
   "editor.smoothScrolling": true,
@@ -78,12 +77,11 @@
     "<C-f>": false
   },
   "vim.statusBarColorControl": true,
-  "workbench.colorCustomizations": {
-    "statusBar.background": "#5f00af",
-    "statusBar.noFolderBackground": "#5f00af",
-    "statusBar.debuggingBackground": "#5f00af",
-    "statusBar.foreground": "#434C5E"
-  },
+     "workbench.colorCustomizations": {
+      "statusBar.background": "#005f5f",
+      "statusBar.noFolderBackground": "#005f5f",
+      "statusBar.debuggingBackground": "#005f5f"
+    },
   "breadcrumbs.enabled": true,
   "editor.suggest.localityBonus": true,
   "editor.tabCompletion": "on",
@@ -98,7 +96,6 @@
   },
   "editor.suggestSelection": "first",
   "editor.formatOnSave": true,
-  "editor.trimAutoWhitespace": false,
   "debug.internalConsoleOptions": "neverOpen",
   "[typescript]": {},
   "[html]": {
@@ -107,5 +104,9 @@
   "editor.wordWrapColumn": 120,
   "html.format.wrapLineLength": 0,
   "explorer.confirmDragAndDrop": false,
-  "workbench.colorTheme": "Monokai"
+  "workbench.colorTheme": "Monokai",
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "editor.codeActionsOnSave": null,
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "window.zoomLevel": 1,
 }
