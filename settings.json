@@ -1,0 +1,111 @@
+{
+  "typescript.tsserver.log": "terse",
+  "typescript.validate.enable": true,
+  "eslint.alwaysShowStatus": true,
+  "eslint.format.enable": true,
+  "files.autoSave": "onFocusChange",
+  "window.zoomLevel": 0,
+  "editor.renderWhitespace": "boundary",
+  "editor.tabSize": 2,
+  "editor.smoothScrolling": true,
+  "editor.minimap.enabled": true,
+  "terminal.external.osxExec": "iTerm2.app",
+  "git.autofetch": true,
+  "git.enableSmartCommit": true,
+  "vim.leader": "<space>",
+  "vim.easymotion": true,
+  "vim.sneak": true,
+  "vim.incsearch": true,
+  "vim.useSystemClipboard": true,
+  "vim.useCtrlKeys": true,
+  "vim.hlsearch": true,
+  "vim.insertModeKeyBindings": [
+    {
+      "before": [
+        "j",
+        "k"
+      ],
+      "after": [
+        "<Esc>",
+        "l"
+      ]
+    }
+  ],
+  "vim.normalModeKeyBindingsNonRecursive": [
+    {
+      "before": [
+        "<leader>",
+        "d"
+      ],
+      "after": [
+        "d",
+        "d"
+      ]
+    },
+    {
+      "before": [
+        "<C-n>"
+      ],
+      "commands": [
+        {
+          "command": ":nohl"
+        }
+      ]
+    },
+    {
+      "before": [
+        ">"
+      ],
+      "commands": [
+        {
+          "command": "editor.action.indentLines"
+        }
+      ]
+    },
+    {
+      "before": [
+        "<"
+      ],
+      "commands": [
+        {
+          "command": "editor.action.outdentLines"
+        }
+      ]
+    }
+  ],
+  "vim.handleKeys": {
+    "<C-a>": false,
+    "<C-f>": false
+  },
+  "vim.statusBarColorControl": true,
+  "workbench.colorCustomizations": {
+    "statusBar.background": "#5f00af",
+    "statusBar.noFolderBackground": "#5f00af",
+    "statusBar.debuggingBackground": "#5f00af",
+    "statusBar.foreground": "#434C5E"
+  },
+  "breadcrumbs.enabled": true,
+  "editor.suggest.localityBonus": true,
+  "editor.tabCompletion": "on",
+
+  "files.associations": {
+    "*.email": "html"
+  },
+  "workbench.editor.enablePreview": false,
+  "workbench.editor.enablePreviewFromQuickOpen": false,
+  "[python]": {
+    "editor.insertSpaces": false
+  },
+  "editor.suggestSelection": "first",
+  "editor.formatOnSave": true,
+  "editor.trimAutoWhitespace": false,
+  "debug.internalConsoleOptions": "neverOpen",
+  "[typescript]": {},
+  "[html]": {
+    "editor.defaultFormatter": "vscode.html-language-features"
+  },
+  "editor.wordWrapColumn": 120,
+  "html.format.wrapLineLength": 0,
+  "explorer.confirmDragAndDrop": false,
+  "workbench.colorTheme": "Monokai"
+}
