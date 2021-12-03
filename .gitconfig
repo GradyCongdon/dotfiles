@@ -1,5 +1,5 @@
 [user]
-	name = Grady Congdon
+	name = GradyCongdon
 	email = gradycongdon@gmail.com
 [core]
 	autocrlf = input
@@ -8,38 +8,40 @@
 [push]
 	default = matching
 [alias]
-	a = add
-	aa = add -A .
-
-	k = checkout
-  jk = checkout -
-  km = checkout master
+  a = add
+  aa = add -A .
+  abandon = checkout --
   b = checkout -b
-  kb = checkout -b
-	zz = checkout --
-
   co = commit
-	com = commit -m
-  recom = commit --amend -C HEAD
-
-	last = diff HEAD~1 HEAD
-	l = diff HEAD~1 HEAD
-	staged = diff --staged
-	d = diff
-	g = diff --staged
+  com = commit -m
   conflicts = diff --name-only --diff-filter=U
   cons = diff --name-only --diff-filter=U
-
-	logp = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+  d = diff
+  g = diff --staged
+  git = status
   graph = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset) %C(bold cyan)(committed: %cD)%C(reset) %C(auto)%d%C(reset)%n''          %C(white)%s%C(reset)%n''          %C(dim white)- %an <%ae> %C(reset) %C(dim white)(committer: %cn <%ce>)%C(reset)' --all
-
-  poh = push origin HEAD
+  jk = checkout -
+  k = checkout
+  kb = checkout -b
+  km = checkout main
+  kms = checkout master
+  l = diff HEAD~1 HEAD
+  last = diff HEAD~1 HEAD
+  logp = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+  m = checkout main
+  pick = cherry-pick
   pgh = push github HEAD
-
-	xx = reset HEAD --
-
-
-	s = status
+  poh = push origin HEAD
+  pnv = push --no-verify origin HEAD
+  recom = commit --amend -C HEAD
+  s = status
+  staged = diff --staged
+  unstage = reset HEAD --
+  wut = for-each-ref --sort=committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'
+  x = reset HEAD --
+  xx = reset HEAD --
+  z = checkout --
+  zz = checkout --
 
 [color]
   ui = auto
@@ -61,3 +63,4 @@
 	process = git-lfs filter-process
 	required = true
 	clean = git-lfs clean -- %f
+
